@@ -1,0 +1,231 @@
+/* GENEL GÖRÜNÜM */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #5B2CFF, #1E88E5);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+/* GENEL KAPSAYICI */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* FORM ELEMANLARI */
+form {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+}
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: none;
+  box-sizing: border-box;
+}
+
+/* BUTONLAR */
+button, .button-link, .btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* RENKLİ BUTONLAR */
+button {
+  background: #1E88E5;
+  color: white;
+}
+button:hover {
+  background: #1565C0;
+}
+.button-link {
+  background: black;
+  color: white;
+}
+.button-link:hover {
+  background: #222;
+}
+.btn-primary {
+  background-color: #4CAF50;
+  color: white;
+}
+.btn-primary:hover {
+  background-color: #388E3C;
+}
+.btn-secondary {
+  background-color: #2196F3;
+  color: white;
+}
+.btn-secondary:hover {
+  background-color: #1565C0;
+}
+
+/* FLASH MESAJLAR */
+.flash-message, .flash {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+.flash.success {
+  background-color: #4CAF50;
+  color: white;
+}
+.flash.warning {
+  background-color: #ff9800;
+  color: white;
+}
+.flash.danger {
+  background-color: #f44336;
+  color: white;
+}
+
+/* TABLOLAR */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  color: #333;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ccc;
+  text-align: center;
+}
+th {
+  background-color: #333;
+  color: white;
+}
+tr:hover {
+  background-color: #f2f2f2;
+}
+
+/* PROFİL FOTOĞRAFI */
+.profil-foto {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* MENÜ GÖRÜNÜMÜ */
+.menu-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+.menu-btn {
+  background: white;
+  color: #333;
+  text-align: center;
+  width: 160px;
+  height: 130px;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.menu-btn i {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+.menu-btn:hover {
+  transform: scale(1.05);
+  background: #f2f2f2;
+}
+.menu-btn.logout {
+  background: #ff5e57;
+  color: white;
+}
+.menu-btn.logout:hover {
+  background: #e53935;
+}
+
+/* KRİTİK ÜRÜN UYARISI */
+.kritik-uyari {
+  background-color: #ffdddd;
+  color: #b30000;
+  border: 1px solid #ff4c4c;
+  padding: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  margin: 20px 0;
+}
+.kritik-uyari ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+/* GRAFİK STİLİ */
+canvas {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  padding: 10px;
+  margin-top: 30px;
+}
+
+/* SİL BUTONU */
+.sil-btn {
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+.sil-btn:hover {
+  background-color: #c0392b;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 600px) {
+  .menu-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+  .menu-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+  .container {
+    padding: 20px;
+  }
+}

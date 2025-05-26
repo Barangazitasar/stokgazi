@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Profilim</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1>Profil Bilgilerim</h1>
+
+    <a href="{{ url_for('dashboard') }}" class="btn-secondary">← Ana Panele Dön</a>
+
+    <!-- Flash mesajlar -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-message">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Profil Güncelleme Formu -->
+    <form action="{{ url_for('profil') }}" method="POST" enctype="multipart/form-data">
+      <label for="kullanici_adi">Kullanıcı Adı:</label>
+      <input type="text" name="kullanici_adi" id="kullanici_adi" value="{{ kullanici.kullanici_adi }}" required>
+
+      <label for="sifre">Yeni Şifre (isteğe bağlı):</label>
+      <input type="password" name="sifre" id="sifre">
+
+      <label>Mevcut Profil Resmi:</label><br>
+      {% if kullanici.profil_resmi %}
+        <img src="{{ url_for('static', filename='uploads/' + kullanici.profil_resmi) }}" class="profil-foto"><br><br>
+      {% else %}
+        <p>Henüz profil resmi yüklenmedi.</p>
+      {% endif %}
+
+      <label for="profil_resmi">Yeni Profil Resmi:</label>
+      <input type="file" name="profil_resmi" id="profil_resmi">
+
+      <button type="submit" class="btn-primary">Güncelle</button>
+    </form>
+  </div>
+</body>
+</html>

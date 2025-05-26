@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ürün Yönetimi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <!-- Üst Menü -->
+    <p style="text-align: right;">
+      <a href="{{ url_for('dashboard') }}" class="button-link">← Ana Panele Dön</a>
+      <a href="{{ url_for('logout') }}" class="button-link">Çıkış Yap</a>
+    </p>
+
+    <h1>Ürün Yönetimi</h1>
+
+    <!-- Flash Mesaj -->
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash-message">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <!-- Kritik Ürün Uyarısı -->
+    {% if kritik_urunler %}
+    <div class="kritik-uyari">
+      <strong>Kritik Stok Uyarısı:</strong> Aşağıdaki ürünlerin stoğu 50'nin altındadır:
+      <ul>
+        {% for urun in kritik_urunler %}
+        <li>{{ urun }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <!-- Ürün Ekleme Formu -->
+    <form action="{{ url_for('urunler') }}" method="POST">
+      <label for="ad">Ürün Adı:</label>
+      <input type="text" name="ad" id="ad" required>
+
+      <label for="kategori">Kategori:</label>
+      <input type="text" name="kategori" id="kategori" required>
+
+      <label for="miktar">Miktar:</label>
+      <input type="number" name="miktar" id="miktar" required>
+
+      <label for="fiyat">Fiyat (₺):</label>
+      <input type="number" step="0.01" name="fiyat" id="fiyat" required>
+
+      <button type="submit">Ürün Ekle</button>
+    </form>
+
+    <!-- Arama -->
+    <form method="get" class="arama-form">
+      <input type="text" name="arama" value="{{ arama }}" placeholder="Ürün adı veya kategori ara">
+      <button type="submit">Ara</button>
+      <a href="{{ url_for('urunler') }}" class="sil-btn">Tümünü Göster</a>
+    </form>
+
+    <!-- Ürün Listesi -->
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Ad</th>
+          <th>Kategori</th>
+          <th>Miktar</th>
+          <th>Fiyat</th>
+          <th>İşlem</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for urun in urunler %}
+        <tr>
+          <td>{{ urun.id }}</td>
+          <td>{{ urun.ad }}</td>
+          <td>{{ urun.kategori }}</td>
+          <td>{{ urun.miktar }}</td>
+          <td>{{ urun.fiyat }} ₺</td>
+          <td>
+            <form action="{{ url_for('urun_sil', id=urun.id) }}" method="post" onsubmit="return confirm('Silmek istediğinizden emin misiniz?');">
+              <button type="submit" class="sil-btn">Sil</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

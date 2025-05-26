@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stok Takip - Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Profil Fotoğrafı -->
+    <div class="profil-kapsayici">
+      <img src="{{ url_for('static', filename='uploads/' + profil_resmi) }}" alt="Profil Resmi" class="profil-foto">
+    </div>
+
+    <!-- Hoş Geldin Kutusu -->
+    <div class="welcome-box">
+      <h1>Hoş geldin, {{ kullanici }}!</h1>
+      <p>Stok takip sistemine başarıyla giriş yaptınız.</p>
+    </div>
+
+    <!-- Kritik Ürün Uyarısı -->
+    <div class="stat-box">
+      <h3>⚠ Kritik Stoktaki Ürünler</h3>
+      <p>{{ kritik_urun }}</p>
+    </div>
+
+    <!-- Menü Butonları -->
+    <div class="menu-grid">
+      <a href="{{ url_for('urunler') }}" class="menu-btn">
+        <i class="fas fa-box-open"></i>
+        <span>Ürünleri Görüntüle</span>
+      </a>
+      <a href="{{ url_for('hareketler') }}" class="menu-btn">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Stok Giriş / Çıkış</span>
+      </a>
+      <a href="{{ url_for('grafikler') }}" class="menu-btn">
+        <i class="fas fa-chart-line"></i>
+        <span>Grafiksel Raporlar</span>
+      </a>
+      {% if rol == 'admin' %}
+      <a href="{{ url_for('admin_panel') }}" class="menu-btn">
+        <i class="fas fa-cogs"></i>
+        <span>Yönetici Paneli</span>
+      </a>
+      {% endif %}
+      <a href="{{ url_for('profil') }}" class="menu-btn">
+        <i class="fas fa-user"></i>
+        <span>Profilim</span>
+      </a>
+      <a href="{{ url_for('logout') }}" class="menu-btn logout">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Çıkış Yap</span>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

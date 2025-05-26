@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giriş Yap - Stok Takip</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #7f00ff, #00bfff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
+      color: white;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .button-container {
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    button, a.register-button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .register-button {
+      background-color: #007bff;
+      color: white;
+    }
+    .register-button:hover {
+      background-color: #0069d9;
+    }
+    .error {
+      color: yellow;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Stok Takip Sistemine Hoşgeldiniz</h2>
+    <p style="text-align: center;">Lütfen giriş yapınız</p>
+
+    {% if hata %}
+      <div class="error">{{ hata }}</div>
+    {% endif %}
+
+    <form method="POST">
+      <label for="username">Kullanıcı Adı:</label>
+      <input type="text" name="username" required>
+
+      <label for="password">Şifre:</label>
+      <input type="password" name="password" required>
+
+      <div class="button-container">
+        <button type="submit">Giriş Yap</button>
+        <a href="{{ url_for('register') }}" class="register-button">Kayıt Ol</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
