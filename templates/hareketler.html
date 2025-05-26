@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Depo Hareketleri</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <!-- Üst Menü -->
+    <p style="text-align: right;">
+    <a href="{{ url_for('dashboard') }}" class="button-link">← Ana Panele Dön</a>
+    <a href="{{ url_for('logout') }}" class="button-link">Çıkış Yap</a>
+</p>
+
+
+    <h1>Depo Giriş / Çıkış İşlemleri</h1>
+    <p><strong>Kullanıcı:</strong> {{ kullanici }}</p>
+<div class="container">
+    <!-- Flash mesaj -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Hareket Ekleme Formu -->
+    <form action="/hareketler" method="post">
+        <label for="urun_id">Ürün:</label>
+        <select name="urun_id" id="urun_id" required>
+            {% for urun in urunler %}
+                <option value="{{ urun.id }}">{{ urun.ad }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="tur">İşlem Türü:</label>
+        <select name="tur" id="tur" required>
+            <option value="giris">Giriş</option>
+            <option value="cikis">Çıkış</option>
+        </select>
+
+        <label for="miktar">Miktar:</label>
+        <input type="number" name="miktar" id="miktar" required>
+
+        <label for="tarih">Tarih:</label>
+        <input type="date" name="tarih" id="tarih" required>
+
+        <button type="submit">Hareket Ekle</button>
+    </form>
+
+    <!-- Hareket Geçmişi -->
+    <h2>Hareket Geçmişi</h2>
+    <table>
+    <thead>
+        <tr>
+            <th>Ürün</th>
+            <th>Tür</th>
+            <th>Miktar</th>
+            <th>Tarih</th>
+            <th>Kullanıcı</th> <!-- Yeni sütun -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for hareket in hareketler %}
+        <tr>
+            <td>{{ hareket.urun_adi }}</td>
+            <td>{{ hareket.tur }}</td>
+            <td>{{ hareket.miktar }}</td>
+            <td>{{ hareket.tarih }}</td>
+            <td>{{ hareket.kullanici_adi }}</td> <!-- Kullanıcı adı -->
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</div>
+</body>
+</html>
