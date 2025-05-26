@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stok Takip - Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    .profil-kapsayici {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .profil-foto {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    .menu-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .menu-btn {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      width: 180px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+      transition: transform 0.2s ease;
+    }
+    .menu-btn:hover {
+      transform: scale(1.05);
+    }
+    .menu-btn i {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    .logout {
+      background: #ff6b6b;
+      color: white;
+    }
+    .logout:hover {
+      background: #e55353;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profil-kapsayici">
+      <img src="{{ url_for('static', filename='uploads/' + profil_resmi) }}" alt="Profil Resmi" class="profil-foto">
+    </div>
+
+    <div class="welcome-box">
+      <h1>Hoş geldin, {{ kullanici }}!</h1>
+      <p>Stok takip sistemine başarıyla giriş yaptınız.</p>
+    </div>
+<div class="stat-box" style="text-align: center; margin-top: 20px;">
+  <h3 style="font-size: 18px;">⚠ Kritik Stoktaki Ürünler</h3>
+  <p style="font-size: 24px; color: #ff6b6b;">{{ kritik_urun }}</p>
+</div>
+
+    <div class="menu-grid">
+      <a href="{{ url_for('urunler') }}" class="menu-btn">
+        <i class="fas fa-box-open"></i>
+        <span>Ürünleri Görüntüle</span>
+      </a>
+      <a href="{{ url_for('hareketler') }}" class="menu-btn">
+        <i class="fas fa-exchange-alt"></i>
+        <span>Stok Giriş / Çıkış</span>
+      </a>
+      <a href="{{ url_for('grafikler') }}" class="menu-btn">
+        <i class="fas fa-chart-line"></i>
+        <span>Grafiksel Raporlar</span>
+      </a>
+      {% if rol == 'admin' %}
+      <a href="{{ url_for('admin_panel') }}" class="menu-btn">
+        <i class="fas fa-cogs"></i>
+        <span>Yönetici Paneli</span>
+      </a>
+      {% endif %}
+      <a href="{{ url_for('profil') }}" class="menu-btn">
+        <i class="fas fa-user"></i>
+        <span>Profilim</span>
+      </a>
+      
+      <a href="{{ url_for('logout') }}" class="menu-btn logout">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Çıkış Yap</span>
+      </a>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
