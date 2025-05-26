@@ -10,11 +10,11 @@ app.config["UPLOAD_FOLDER"] = "static/uploads"
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="shuttle.proxy.rlwy.net",
+        host="localhost",
         user="root",
-        password="ZokhQYoTLLJaHFXZwFVFswskkjqdVYei",
-        port=36724,
-        database="railway"
+        password="",
+        port=,
+        database="stok_takip"
     )
 
 
