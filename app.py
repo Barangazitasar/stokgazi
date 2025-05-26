@@ -10,11 +10,13 @@ app.config["UPLOAD_FOLDER"] = "static/uploads"
 
 def get_db_connection():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",         # Kendi phpMyAdmin kullanıcı adın
-        password="",         # Kullandığın MySQL şifresi (eğer yoksa boş bırak)
-        database="stok_takip"
+        host="shuttle.proxy.rlwy.net",
+        user="root",
+        password="ZokhQYoTLLJaHFXZwFVFswskkjqdVYei",
+        port=36724,
+        database="railway"
     )
+
 
 
 
