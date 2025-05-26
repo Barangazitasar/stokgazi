@@ -7,13 +7,15 @@ app = Flask(__name__)
 app.secret_key = "supersecretkey"
 app.config["UPLOAD_FOLDER"] = "static/uploads"
 
+
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
-        user="stokgazi_bgt",
-        password="6sRG8SQd2mUeeTrddGDX",
-        database="stokgazi_bgt"
+        user="root",         # Kendi phpMyAdmin kullanıcı adın
+        password="",         # Kullandığın MySQL şifresi (eğer yoksa boş bırak)
+        database="stok_takip"
     )
+
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -334,4 +336,5 @@ def rol_degistir(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
